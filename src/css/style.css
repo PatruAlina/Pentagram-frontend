@@ -1,0 +1,85 @@
+body {
+	background-image: url('http://www.planwallpaper.com/static/images/i-should-buy-a-boat.jpg');
+	background-size:cover;
+
+}
+
+label{
+	color:#000066;
+	font-weight:bold;
+
+}
+
+button {
+    background-color: #00004d;
+    border: 2px solid black;
+	border-radius:5px;
+    color: #ccccff;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+	opacity: 0.9;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	margin: 20% 75% 30% 10%;
+}
+
+input{
+    width: 13%;
+	height:15px;
+    padding: 12px 20px;
+    margin: 7px 0;
+    box-sizing: border-box;
+	border:none;
+	border-bottom: 2px solid #000066;
+    border-radius: 5px;
+	background:rgba(0,0,0,0.1);
+	text-align:right;
+	color:white;
+}
+input:focus {
+    border:none;
+	border-bottom: 2px solid #ccccff;
+    border-radius: 5px;
+}
+
+form {
+    width: 70%;
+    margin: 0 auto;
+	margin-top:60px;
+}
+
+label, input {
+    /* in order to define widths */
+    display: block;
+}
+
+label {
+    width: 30%;
+    /* positions the label text beside the input */
+    text-align: right;
+}
+
+label + input {
+    width: 30%;
+    /* large margin-right to force the next element to the new-line
+       and margin-left to create a gutter between the label and input */
+    margin: 0 30% 0 4%;
+}
+
+/* only the submit button is matched by this selector,
+   but to be sure you could use an id or class for that button */
+input + input {
+    float: right;
+}
+
+div.relative{
+	position:relative;
+	text-align:center;
+}
+h1{
+	margin-left:275px;
+	color:#000066;
+}
+
