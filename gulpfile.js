@@ -12,6 +12,7 @@ var config={
 	paths:{
 		html:'./src/*.html',
 		js:'./src/js/*.js',
+		thirdPartyJs:'./node_modules/jquery/dist/jquery.js',
 		css:'./src/css/*.css'
 	},
 	dist:'./build',
@@ -62,6 +63,12 @@ gulp.task('css',function(){
 		.pipe(connect.reload());
 });
 
+gulp.task('third-party-js',function(){
+	gulp.src(config.paths.thirdPartyJs)
+		.pipe(gulp.dest(config.dist+"/third-party-js"))
+		.pipe(connect.reload());
+});
+
 //Setup file monitor feature
 
 gulp.task('watch',function(){
@@ -74,4 +81,4 @@ gulp.task('watch',function(){
 });
 
 //Setup build workflow as default task
-gulp.task('default',['html','js','css','open','watch']);
+gulp.task('default',['html','js','third-party-js','css','open','watch']);

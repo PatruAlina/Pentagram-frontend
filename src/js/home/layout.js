@@ -3,18 +3,18 @@ var React=require('react');
 var HomePage=React.createClass({
 	render:function(){
 		return(
-			<table className="table">
-				<thead>
-				<tr>
-					<th>#</th>
-					<th>First name</th>
-					<th>Last name</th>
-					<th>Username</th>
-				</tr>
-				</thead>
-				<tbody id="user-data-container">
-				</tbody>
-			</table>
+			<div>
+				<h1>Pentagram</h1>
+				<div className="content">
+					<ul className="flex-container">
+					  <li className="flex-item"><img src="http://i.telegraph.co.uk/multimedia/archive/03571/potd-squirrel_3571152k.jpg"/></li>
+					  <li className="flex-item"><img src="http://i.telegraph.co.uk/multimedia/archive/03571/potd-squirrel_3571152k.jpg"/></li>
+					  <li className="flex-item"><img src="http://i.telegraph.co.uk/multimedia/archive/03571/potd-squirrel_3571152k.jpg"/></li>
+					  <li className="flex-item"><img src="http://i.telegraph.co.uk/multimedia/archive/03571/potd-squirrel_3571152k.jpg"/></li>
+					  <li className="flex-item"><img src="http://i.telegraph.co.uk/multimedia/archive/03571/potd-squirrel_3571152k.jpg"/></li>
+					</ul>
+				</div>
+			</div>
 		);
 	}
 });
