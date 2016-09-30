@@ -9,14 +9,14 @@ var concat=require('gulp-concat');
 var config={
 	port:3001,
 	localUrl:'http://localhost',
-	paths:{
-		html:'./src/*.html',
-		js:'./src/js/*.js',
-		thirdPartyJs:'./node_modules/jquery/dist/jquery.js',
-		css:'./src/css/*.css'
-	},
-	dist:'./build',
-	mainJs:'./src/main.js'
+	paths: {
+		html:'./src/*.html'
+		, js: './src/**/*.js'
+		, thirdPartyJs:['./node_modules/jquery/dist/jquery.js']
+		, css: './src/css/*.css'
+	}
+	, dist: './build'
+	, mainJs: './src/main.js'
 }
 
 //setup local dev server
@@ -63,9 +63,9 @@ gulp.task('css',function(){
 		.pipe(connect.reload());
 });
 
-gulp.task('third-party-js',function(){
+gulp.task('third-party-js', function(){
 	gulp.src(config.paths.thirdPartyJs)
-		.pipe(gulp.dest(config.dist+"/third-party-js"))
+		.pipe(gulp.dest(config.dist + "/third-party-js"))
 		.pipe(connect.reload());
 });
 

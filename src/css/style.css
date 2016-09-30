@@ -1,6 +1,7 @@
 body {
 	background-image: url('http://www.planwallpaper.com/static/images/i-should-buy-a-boat.jpg');
 	background-size:cover;
+	font-family:"Comic Sans MS";
 
 }
 
@@ -18,10 +19,14 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 13px;
+    font-size: 18px;
 	opacity: 0.9;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 	margin: 10% 65% 20% 10%;
+}
+button:focus {
+	border-bottom: 2px solid #ccccff;
+    border-radius: 5px;
 }
 
 input{
@@ -33,10 +38,11 @@ input{
 	border:none;
 	border-bottom: 2px solid #000066;
     border-radius: 5px;
-	background:rgba(0,0,0,0.1);
+	background:rgba(0,0,0,0.5);
 	text-align:right;
 	color:white;
 }
+
 input:focus {
     border:none;
 	border-bottom: 2px solid #ccccff;
@@ -47,85 +53,40 @@ form {
     width: 70%;
     margin: 0 auto;
 	margin-top:60px;
+	
 }
 
 label, input {
-    /* in order to define widths */
     display: block;
 }
 
 label {
     width: 30%;
-    /* positions the label text beside the input */
     text-align: right;
+	font-size:18px;
 }
 
 label + input {
     width: 30%;
-    /* large margin-right to force the next element to the new-line
-       and margin-left to create a gutter between the label and input */
     margin: 0 30% 0 4%;
 }
 
-/* only the submit button is matched by this selector,
-   but to be sure you could use an id or class for that button */
 input + input {
     float: right;
 }
 
-div.relative{
-	position:relative;
-	text-align:center;
-}
 h1{
 	margin-left:575px;
 	color:#000066;
 }
 
-.flex-container {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  display:inline-block;
-  
-  -webkit-flex-flow: row wrap;
-  justify-content: space-around;
-}
-
-.flex-item {
-  padding: 10px;
-  width: 200px;
-  height: 150px;
-  margin-top: 10px;
-  
-  line-height: 150px;
-  color: white;
-  font-weight: bold;
-  font-size: 3em;
-  text-align: center;
-  
-}
-img {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-	width: 200px;
-    height: 150px;
-}
 h2{
-	color:white;
+	color:#e6f9ff;
 	margin-left:250px;
-	font-size: 18px;
-	font-weight: normal;
+	font-size: 20px;
 }
 a{
-	color:#6666ff;
+	color: #cc0000;
 	padding: 5px 5px;
     text-align: center; 
     text-decoration:underline;
@@ -135,4 +96,92 @@ a{
 	/*border: 2px solid white;*/
 	display: inline-block;
 }
+p{
+	color:white;
+}
 
+.imgPosted{
+	background-color:#000033;
+	height:250px;
+	min-width:300px;
+	border:#000033;
+	flex-grow:1;
+	border-radius: 25px;
+}
+.picture
+{
+	width: 300px;
+	height: 300px;
+	position: relative;
+	line-height: 200px;
+	display: 		inline-block;
+	margin: 		3% 3%;
+	border: 4px solid #000033;
+	color:white;
+	border-radius: 25px;
+	display:flex;
+	flex-wrap: wrap;
+}
+
+.commentAndLike
+{
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	background-color: #4d4dff;
+	bottom: 0;
+	line-height: 50px;
+	text-align: center;
+	background:rgba(0,0,0,0.6);
+	border-radius: 15px;
+}
+
+.container
+{
+
+	background-color: #ccccff;
+	background:rgba(0,0,0,0.6);
+	border-radius: 15px;
+	width: 			90%;
+	height: 		90%;
+	margin: 		50px auto;
+	text-align: 	center;
+	display:flex;
+	flex-wrap: wrap;
+
+}
+.like{
+	position: absolute;
+    top: 0px;
+    right: 0px;
+	height:50px;
+	min-width:50px;
+	flex-grow:1;
+}
+.comment{
+	position: absolute;
+    bottom: 0px;
+    left: 0px;
+	height:50px;
+	min-width:50px;
+	flex-grow:1;
+}
+
+.left{
+    width:90px;
+	padding-left:50px;
+    float:left;
+    text-align:left;
+	color:#33ccff;
+	font-weight:bold;
+	font-size:20px;
+}
+.right{
+    width:100px;
+	padding-right:60px;
+    float:right;
+    text-align:right;
+	color:#b30000;
+	font-weight:bold;
+	font-size:20px;
+}

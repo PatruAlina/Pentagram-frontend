@@ -1,11 +1,17 @@
 var React=require('react');
-
+var AjaxSupport = require('../common/AjaxSupport');
+var Storage = require('../common/appStorageHandler');
 
 var LoginPage=React.createClass({
 	getInitialState: function(){
 		return{
-			username:null,
-			password:null
+			/*var sessionStorageData = Storage.getFromStorage();
+			return {
+				username: '-'
+				, password: '-'
+				, usernameFromStorage:sessionStorageData.username
+				, passwordStorage: sessionStorageData.password*/
+			}
 		}
 	}
 	,validateInputValue:function(inputValue){
@@ -14,6 +20,13 @@ var LoginPage=React.createClass({
 			return false;
 		}
 		return true;
+	}
+	,passwordChangedHandler:function(event){
+		var passwordValue=event.target.value;
+		if(!this.validateInputValue(passwordValue)){
+			passwordValue=null;
+		}
+		this.setState({password:passwordValue});
 	}
 	,usernameChangedHandler:function(event){
 		var usernameValue=event.target.value;
@@ -25,6 +38,14 @@ var LoginPage=React.createClass({
 	,formSubmitHandler:function(event){
 		event.preventDefault();
 		console.log(this.state);
+		var dataToStore = {
+			username:this.state.username
+			, password: this.state.password
+		}
+
+		// Save data to session storage
+		/*Storage.saveInStorage(dataToStore)
+		console.log('data save in session storage');*/
 		if(this.isValidStateForSubmit()){
 			AjaxSupport.get; //AjaxSupport.post({url:'register-user',data:this.state,success:function(){console.log("success");},error:function(){console.log("failed");})
 			alert("Form is ready for submit");
@@ -36,7 +57,7 @@ var LoginPage=React.createClass({
 		
 	}
 	,isValidStateForSubmit:function(){
-		return this.state.username && this.state.password && (this.state.password===this.state.repeatPassword);
+		return this.state.username && this.state.password ;
 	}
 	,render:function(){
 		return(
@@ -52,12 +73,12 @@ var LoginPage=React.createClass({
 						</div>
 						<div>
 							<label>Password  </label>
-							<input type="password" name="password"/>
+							<input type="password" name="password" onChange={this.passwordChangedHandler}/>
 						</div>
 						<button name="loginButton" type="submit" onClick={this.formSubmitHandler} >Login</button> 
 					</div>
 					<div className="link">
-						<h2>
+						<h2 className="loginLink">
 							Don't have an account yet?   
 							<a href="http://localhost:3001/#/register" target="_top">
 								Register!

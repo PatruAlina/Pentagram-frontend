@@ -1,72 +1,96 @@
 var React=require('react');
+var AjaxSupport = require('../common/AjaxSupport');
 
-var RegisterPage=React.createClass({
+var RegisterPage = React.createClass({
 	getInitialState: function(){
-		return{
+		return {
+			firstName:null,
+			lastName: null,
 			username:null,
+			email:null,
 			password:null,
-			repeatPassword:null,
-			email:null
+			repeatPassword:null
 		}
 	}
-	,validateInputValue:function(inputValue){
-		if(!inputValue|| inputValue.trim().length===0)
-		{
+	, isValidInputValue: function(inputValue) {
+		if (!inputValue || inputValue.trim().length === 0) {
 			return false;
 		}
 		return true;
 	}
-	,usernameChangedHandler:function(event){
-		var usernameValue=event.target.value;
-		if(!this.validateInputValue(usernameValue)){
-			usernameValue=null;
+	, firstNameChangedHandler: function(event) {
+		var firstNameValue = event.target.value;
+		if (!this.isValidInputValue(firstNameValue)) {
+			firstNameValue = null;
 		}
-		this.setState({username:usernameValue});
+		this.setState({firstName:firstNameValue});
 	}
-	,passwordChangedHandler:function(event){
-		var passwordValue=event.target.value;
-		if(!this.validateInputValue(passwordValue)){
-			passwordValue=null;
+	, lastNameChangedHandler: function(event) {
+		var lastNameValue = event.target.value;
+		if (!this.isValidInputValue(lastNameValue)) {
+			lastNameValue = null;
 		}
-		this.setState({password:passwordValue});
+		this.setState({lastName:lastNameValue});
 	}
-	,repeatPasswordChangedHandler:function(event){
-		var repeatPasswordValue=event.target.value;
-		if(!this.validateInputValue(repeatPasswordValue)){
-			repeatPasswordValue=null;
-		}
-		this.setState({repeatPassword:repeatPasswordValue});
-	}
-	,emailChangedHandler:function(event){
-		var emailValue=event.target.value;
-		if(!this.validateInputValue(emailValue)){
-			emailValue=null;
+	, emailChangedHandler: function(event) {
+		var emailValue = event.target.value;
+		if (!this.isValidInputValue(emailValue)) {
+			emailValue = null;
 		}
 		this.setState({email:emailValue});
 	}
-	,formSubmitHandler:function(event){
-		event.preventDefault();
+	, usernameChangedHandler: function(event) {
+		var usernameValue = event.target.value;
+		if (!this.isValidInputValue(usernameValue)) {
+			usernameValue = null;
+		}
+		this.setState({username:usernameValue});
+	}
+	, passwordChangedHandler: function(event) {
+		var passwordValue = event.target.value;
+		if (!this.isValidInputValue(passwordValue)) {
+			passwordValue = null;
+		}
+		this.setState({password:passwordValue});
+	}
+	, repeatPasswordChangedHandler: function(event) {
+		var password2Value = event.target.value;
+		if (!this.isValidInputValue(password2Value)) {
+			password2Value = null;
+		}
+		this.setState({repeatPassword:password2Value});
+	}
+	, formSubmitHandler: function(event) {
+		event.preventDefault();	
 		console.log(this.state);
-		if(this.isValidStateForSubmit()){
+		if (this.isValidStateForSubmit()) {
 			AjaxSupport.post({
-				url:'register-user',
-				data:this.state,
-				success:function(){
-					console.log("success");
-				},
-				error:function(){
-					console.log("failed");
+				url:'/users'
+				,contentType:'application/json'
+				, data: JSON.stringify({
+					username:this.state.username,
+					password:this.state.password,
+					firstName:this.state.firstName,
+					lastName:this.state.lastName,
+					email:this.state.email,
+				})
+				, success: function() {
+					console.log('request success');
+				}
+				, error: function() {
+					debugger;
+					console.log('my request failed');
 				}
 			});
-			alert("Form is ready for submit");
+			console.log("Form is ready for sumbit");
+		} else {
+			console.log('there are some issues with the form');
 		}
-		else{
-			alert("not");
-		}
-		
 	}
-	,isValidStateForSubmit:function(){
-		return this.state.username && this.state.password && this.repeatPassword && this.email && (this.state.password===this.state.repeatPassword);
+
+	, isValidStateForSubmit: function() {
+		return this.state.firstName && this.state.lastName && this.state.email
+		 && this.state.password && this.state.repeatPassword && (this.state.password === this.state.repeatPassword);
 	}
 	,render:function(){
 		return(
@@ -76,6 +100,14 @@ var RegisterPage=React.createClass({
 				</div>
 				<form>
 					<div>
+						<div>
+							<label>First name  </label>
+							<input type="text" name="firstName" onChange={this.firstNameChangedHandler} />
+						</div>
+						<div>
+							<label>Last name  </label>
+							<input type="text" name="lastName" onChange={this.lastNameChangedHandler} />
+						</div>
 						<div>
 							<label>Username  </label>
 							<input type="text" name="username" onChange={this.usernameChangedHandler} />
